@@ -2,7 +2,6 @@ package com.example.cpw253todolist
 
 import android.content.Context
 import android.graphics.Paint
-import android.os.Build
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cpw253todolist.databinding.TaskItemCellBinding
 import java.time.format.DateTimeFormatter
@@ -13,11 +12,7 @@ class TaskItemViewHolder(
     private val clickListener: TaskItemClickListener
 ): RecyclerView.ViewHolder(binding.root)
 {
-    private val timeFormat = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-        DateTimeFormatter.ofPattern("HH:mm")
-    } else {
-        TODO("VERSION.SDK_INT < O")
-    }
+    private val timeFormat =  DateTimeFormatter.ofPattern("HH:mm")
 
     fun bindTaskItem(taskItem: TaskItem)
     {
@@ -40,9 +35,7 @@ class TaskItemViewHolder(
         }
 
         if(taskItem.dueTime != null)
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 binding.dueTime.text = timeFormat.format(taskItem.dueTime)
-            }
         else
             binding.dueTime.text = ""
 
